@@ -1,13 +1,11 @@
 const coverCache = new Map();
 const pendingCovers = new Map();
-let lastCoverRequest = 0;
+let coverRequestQueue = Promise.resolve();
 
 function waitForCoverSlot() {
-  const delay = Math.max(0, 275 - (Date.now() - lastCoverRequest));
-  return new Promise(resolve => setTimeout(() => {
-    lastCoverRequest = Date.now();
-    resolve();
-  }, delay));
+  const slot = coverRequestQueue.then(() => new Promise(resolve => setTimeout(resolve, 275)));
+  coverRequestQueue = slot.catch(() => {});
+  return slot;
 }
 
 export function normalizeName(n){
