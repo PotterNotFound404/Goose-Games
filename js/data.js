@@ -1,14 +1,14 @@
 export const CATEGORY_TITLES = {
   Action: [
-    "Doom Eternal","Devil May Cry 5","Bayonetta 3","Sekiro: Shadows Die Twice",
+    "Doom Eternal","God of War Ragnarok","Devil May Cry 5","Bayonetta 3","Sekiro: Shadows Die Twice",
     "Batman: Arkham Knight","Control","Nier: Automata","Ghost of Tsushima","Cyberpunk 2077",
-    "Star Wars Jedi: Fallen Order","Titanfall 2","The Last of Us Part II","Uncharted 4: A Thief's End",
+    "Star Wars Jedi: Fallen Order","Titanfall 2","The Last of Us Part II","Spider-Man","Uncharted 4: A Thief's End",
     "Resident Evil 4","Halo Infinite","Metroid Dread","Dishonored 2","Watch Dogs: Legion"
   ],
   Adventure: [
     "The Legend of Zelda: Breath of the Wild","Horizon Zero Dawn","Genshin Impact","Uncharted 4: A Thief's End",
     "Assassin's Creed Valhalla","Red Dead Redemption 2","The Witcher 3: Wild Hunt","Life is Strange","Firewatch",
-    "The Outer Worlds","Death Stranding","The Last of Us",
+    "Lara Croft and the Guardian of Light","The Outer Worlds","Death Stranding","The Last of Us",
     "The Walking Dead: Season One","Kingdom Hearts III","Ori and the Will of the Wisps","A Plague Tale: Innocence","Horizon Forbidden West"
   ],
   RPG: [

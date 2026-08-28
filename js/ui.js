@@ -3,7 +3,7 @@ import { formatPrice, timeLeftStr } from './utils.js';
 import { buildGames } from './data.js';
 import { getTranslation, localizeGameTitle } from './i18n.js';
 
-const COVER_TIMEOUT_MS = 4500;
+const COVER_TIMEOUT_MS = 12000;
 
 let elements = {};
 
@@ -192,7 +192,7 @@ export function attachCover(imgEl, name, emojiFallback='🎮', options = {}){
           clearTimeout(timer);
           resolve(result);
         };
-        const timer = setTimeout(() => finish({ hasCover: false, timedOut: true }), timeoutMs);
+        const timer = setTimeout(() => finish(applyEmoji()), timeoutMs);
 
         imgEl.src = url;
         imgEl.onload = () => {
@@ -209,10 +209,7 @@ export function attachCover(imgEl, name, emojiFallback='🎮', options = {}){
     });
   }).catch(() => applyEmoji());
 
-  return Promise.race([
-    work,
-    new Promise(resolve => setTimeout(() => resolve({ hasCover: false, timedOut: true }), timeoutMs))
-  ]);
+  return work;
 }
 
 export async function settleCoversAndPrune(cards){
