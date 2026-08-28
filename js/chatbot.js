@@ -200,6 +200,7 @@ async function sendMessage(text) {
     assistantMsgEl.className = 'chat-message assistant';
     assistantMsgEl.innerHTML = `<div class="message-content">${formatMarkdownText(replyText)}</div>`;
     chatBody.appendChild(assistantMsgEl);
+    assistantMsgEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
     chatHistory.push({ role: 'model', text: replyText });
 
@@ -209,6 +210,7 @@ async function sendMessage(text) {
     errorMsgEl.className = 'chat-message assistant error';
     errorMsgEl.innerHTML = `<div class="message-content">${formatMarkdownText(getLocalChatReply(text))}</div>`;
     chatBody.appendChild(errorMsgEl);
+    errorMsgEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
 }

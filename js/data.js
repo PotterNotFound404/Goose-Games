@@ -1,8 +1,8 @@
 export const CATEGORY_TITLES = {
   Action: [
-    "Doom Eternal","God of War Ragnarok","Devil May Cry 5","Bayonetta 3","Sekiro: Shadows Die Twice",
+    "Doom Eternal","Devil May Cry 5","Bayonetta 3","Sekiro: Shadows Die Twice",
     "Batman: Arkham Knight","Control","Nier: Automata","Ghost of Tsushima","Cyberpunk 2077",
-    "Star Wars Jedi: Fallen Order","Titanfall 2","The Last of Us Part II","Spider-Man","Uncharted 4: A Thief's End",
+    "Star Wars Jedi: Fallen Order","Titanfall 2","The Last of Us Part II","Uncharted 4: A Thief's End",
     "Resident Evil 4","Halo Infinite","Metroid Dread","Dishonored 2","Watch Dogs: Legion"
   ],
   Adventure: [

@@ -724,31 +724,25 @@ export const DICTIONARY = {
 export const GAME_TITLE_TRANSLATIONS = {
   fr: {
     "The Legend of Zelda: Breath of the Wild": "The Legend of Zelda: Breath of the Wild",
-    "God of War Ragnarok": "God of War Ragnarök",
     "Untitled Goose Game": "Jeu de l'Oie Sans Titre",
     "Resident Evil 4": "Resident Evil 4",
     "The Witcher 3: Wild Hunt": "The Witcher 3 : Chasse Sauvage",
-    "Spider-Man": "Spider-Man",
     "Animal Crossing: New Horizons": "Animal Crossing: New Horizons",
     "A Plague Tale: Innocence": "A Plague Tale: Innocence",
     "Life is Strange": "Life is Strange"
   },
   es: {
     "The Legend of Zelda: Breath of the Wild": "The Legend of Zelda: Breath of the Wild",
-    "God of War Ragnarok": "God of War Ragnarök",
     "Untitled Goose Game": "Juego del Ganso Sin Nombre",
     "Resident Evil 4": "Resident Evil 4",
     "The Witcher 3: Wild Hunt": "The Witcher 3: Cacería Salvaje",
-    "Spider-Man": "Spider-Man",
     "Animal Crossing: New Horizons": "Animal Crossing: New Horizons"
   },
   de: {
     "The Legend of Zelda: Breath of the Wild": "The Legend of Zelda: Breath of the Wild",
-    "God of War Ragnarok": "God of War Ragnarök",
     "Untitled Goose Game": "Unbenanntes Gänsespiel",
     "Resident Evil 4": "Resident Evil 4",
     "The Witcher 3: Wild Hunt": "The Witcher 3: Wilde Jagd",
-    "Spider-Man": "Spider-Man",
     "Animal Crossing: New Horizons": "Animal Crossing: New Horizons"
   }
 };
