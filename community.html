@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Community Arcade - GooseGames</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-page="community">
+  <div id="siteHeader"></div>
+  <main class="community-page">
+    <section class="community-hero">
+      <div class="community-hero-copy">
+        <div class="checkout-kicker" data-i18n="communityGames">Community Arcade</div>
+        <h1 data-i18n="communityHeroTitle">Scratch projects, remixed into a living arcade.</h1>
+        <p id="communityIntro" data-i18n="communityHeroCopy">These projects were made by PotterNotFound404, the same creator behind this site. Explore the full playthrough-like arcade, open any project, and let the album spill open like a cabinet from another era.</p>
+      </div>
+      <div class="community-hero-orbit">
+        <div class="community-hero-avatar-wrap">
+          <img
+            class="community-hero-avatar"
+            src="potternotfound404%20logo.jpg"
+            alt="PotterNotFound404 profile picture"
+            aria-label="Open creator aliases"
+          >
+        </div>
+      </div>
+    </section>
+
+    <section class="community-stage">
+      <div class="section-head">
+        <div>
+          <h2 data-i18n="communityFeaturedTitle">Featured Projects</h2>
+          <p class="community-sub" data-i18n="communityFeaturedSub">Cinematic cards, creator credit, and stats that feel like a gallery wall instead of a list.</p>
+        </div>
+      </div>
+      <div class="community-featured" id="communityFeatured"></div>
+    </section>
+
+    <section class="community-stage community-album-stage">
+      <div class="section-head">
+        <div>
+          <h2 data-i18n="communityAlbumTitle">The Completely Normal Platformer album</h2>
+          <p class="community-sub" data-i18n="communityAlbumSub">Hover or click the album to make the chapters burst out in order, like a tiny arcade shrine for the series.</p>
+        </div>
+      </div>
+      <div class="community-album-track" id="communityAlbumTrack"></div>
+    </section>
+  </main>
+
+  <div id="siteFooter"></div>
+  <div id="siteCart"></div>
+  <div id="communityModal" class="goose-modal-overlay community-modal">
+    <div class="goose-modal-content community-modal-content">
+      <button class="modal-close-btn" id="communityModalClose" type="button">✕</button>
+      <div class="community-modal-frame-wrap">
+        <iframe id="communityModalFrame" title="Scratch project" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <div class="community-modal-meta">
+        <h2 id="communityModalTitle"></h2>
+        <p id="communityModalDesc"></p>
+        <div class="community-modal-actions">
+          <a id="communityModalLink" class="btn btn-primary" target="_blank" rel="noreferrer" data-i18n="openScratch">Open project</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script type="module" src="js/page.js"></script>
+</body>
+</html>

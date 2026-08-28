@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GooseGames Account</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-page="account">
+  <div id="siteHeader"></div>
+  <main>
+    <section class="section" style="max-width:720px; margin:0 auto;">
+      <div class="section-head">
+        <div>
+          <h2>Account login</h2>
+          <p style="color:var(--text-dim); margin:8px 0 0; font-size:.95rem;">This is a fake login for a polished school storefront.</p>
+        </div>
+      </div>
+      <div class="card" style="padding:24px; border-radius:20px;">
+        <div class="field"><label>Email</label><input type="email" id="loginEmail" placeholder="you@example.com"></div>
+        <div class="field"><label>Password</label><input type="password" id="loginPassword" placeholder="••••••••"></div>
+        <div class="error-text" id="loginError">Please fill in both fields.</div>
+        <button class="btn btn-primary" id="loginSubmit" type="button">Sign in</button>
+        <div class="switch-line" style="margin-top:16px;">New to GooseGames? <a href="#" id="createAccount">Create an account</a></div>
+      </div>
+      <div class="card" style="margin-top:24px; padding:22px; border-radius:20px;">
+        <h3 style="margin-top:0;">Why log in?</h3>
+        <ul style="padding-left:18px; color:var(--text-dim);">
+          <li>Save your favorite games</li>
+          <li>Keep your cart safe across pages</li>
+          <li>Simulated account access for the assessment</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+  <div id="siteFooter"></div>
+  <div id="siteCart"></div>
+  <script type="module" src="js/page.js"></script>
+</body>
+</html>

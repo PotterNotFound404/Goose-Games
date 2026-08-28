@@ -1,0 +1,98 @@
+﻿<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GooseGames - Honk if you love games</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-page="index">
+  <div id="siteHeader"></div>
+
+  <div class="sale-banner" data-i18n="gooseDaysSale">🎉 GOOSE DAYS SALE — up to 70% off thousands of games. <span id="viewDealsLink" data-i18n="shopDeals">Shop all deals →</span></div>
+
+  <section class="hero">
+    <div class="goose-float" style="top:12%; left:6%;">🪿</div>
+    <div class="goose-float" style="top:18%; right:8%; animation-delay:1.2s;">🎮</div>
+    <div class="goose-float" style="top:60%; left:12%; animation-delay:2.4s;">🕹️</div>
+    <div class="hero-banner">
+      <h1 data-i18n="heroTitle">Games worth <span class="pop">honking</span> about.</h1>
+      <p data-i18n="heroCopy">One flock, every genre. Thousands of games, friendly prices, and zero geese harmed in the making of this storefront.</p>
+      <div class="hero-cta-panel">
+        <div class="hero-cta-card">
+          <div class="cta-label" data-i18n="readyToShop">Ready to start shopping?</div>
+          <button class="btn btn-primary" id="startExploreBtn" type="button" data-i18n="startExploring">Ready to honk →</button>
+        </div>
+      </div>
+      <div class="hero-ctas">
+        <button class="btn btn-secondary" id="dealsHeroBtn" type="button" data-i18n="seeDeals">See today's deals</button>
+      </div>
+    </div>
+  </section>
+
+  <div class="marquee-section"><div class="marquee-track" id="marquee1"></div></div>
+  <div class="marquee-section"><div class="marquee-track reverse" id="marquee2"></div></div>
+
+  <section class="section community-teaser">
+    <div class="community-teaser-panel">
+      <div>
+        <h2 data-i18n="communityTeaserTitle">Community Arcade</h2>
+        <p data-i18n="communityTeaserCopy">Scratch games, animations, and an album-style series all get their own dedicated page now.</p>
+      </div>
+      <a class="btn btn-primary" href="community.html" id="communityExpandLink" data-i18n="openCommunityPage">Open community page</a>
+    </div>
+  </section>
+
+  <div class="sticky-scene" id="stickyScene">
+    <div class="sticky-inner">
+      <div class="flock-row top" id="flockTop"></div>
+      <div class="flock-row bottom" id="flockBottom"></div>
+      <div class="flock-text" id="flockText">
+        <span data-i18n="flockBanner">Thousands of games.</span>
+        <small data-i18n="flockBannerSub">(landing right at one spot, for you)</small>
+      </div>
+    </div>
+  </div>
+
+  <section class="section" id="dealsSection">
+    <div class="section-head">
+      <h2 data-i18n="todaysDeals">🔥 Today's Goose Deals</h2>
+      <a href="deals.html" data-i18n="viewAllDeals">View all deals →</a>
+    </div>
+    <div class="grid" id="dealsGrid"></div>
+  </section>
+
+  <section class="abundance-scene" id="abundanceScene">
+    <div class="abundance-inner">
+      <div class="abundance-field" id="abundanceField"></div>
+      <div class="abundance-cta">
+        <h2 data-i18n="readyToShop">Ready to shop the flock?</h2>
+        <p data-i18n="readyToShopSub">Thousands of titles across every genre — your next favourite is already here.</p>
+        <a class="btn btn-primary abundance-btn" href="search.html" data-i18n="startExploring">Start exploring →</a>
+      </div>
+    </div>
+  </section>
+
+  <div id="siteFooter"></div>
+  <div id="siteCart"></div>
+  <div id="communityModal" class="goose-modal-overlay community-modal">
+    <div class="goose-modal-content community-modal-content">
+      <button class="modal-close-btn" id="communityModalClose" type="button">✕</button>
+      <div class="community-modal-frame-wrap">
+        <iframe id="communityModalFrame" title="Scratch project" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <div class="community-modal-meta">
+        <h2 id="communityModalTitle"></h2>
+        <p id="communityModalDesc"></p>
+        <div class="community-modal-actions">
+          <a id="communityModalLink" class="btn btn-primary" target="_blank" rel="noreferrer" data-i18n="openScratch">Open on Scratch</a>
+          <button id="communityModalFullscreen" class="btn btn-secondary" type="button" data-i18n="fullscreen">Fullscreen</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script type="module" src="js/page.js"></script>
+</body>
+</html>
