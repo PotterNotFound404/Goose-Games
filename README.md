@@ -167,4 +167,6 @@ This project is intended for educational/demo use and is not production-finance 
 
 ## Credits
 
-Built as a full storefront concept with interactive storefront patterns, game discovery UI, community humor, and promotional interactions.
+The base GooseGames code and core project direction were created by the developer.
+
+AI assistance was used to add features, polish the website, refine interactions, and help code complex animations and visual effects. The developer reviewed, integrated, and tested the resulting work as part of the final project.
