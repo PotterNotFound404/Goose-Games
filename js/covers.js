@@ -1,4 +1,14 @@
 const coverCache = new Map();
+const pendingCovers = new Map();
+let lastCoverRequest = 0;
+
+function waitForCoverSlot() {
+  const delay = Math.max(0, 275 - (Date.now() - lastCoverRequest));
+  return new Promise(resolve => setTimeout(() => {
+    lastCoverRequest = Date.now();
+    resolve();
+  }, delay));
+}
 
 export function normalizeName(n){
   if(!n) return '';
@@ -15,20 +25,30 @@ export async function getCover(name){
   if (!name) return null;
   const key = name.toLowerCase().trim();
   if(coverCache.has(key)) return coverCache.get(key);
+  if (pendingCovers.has(key)) return pendingCovers.get(key);
 
   const queryName = normalizeName(name) || name;
-  try {
-    const res = await fetch(`/api/cover?name=${encodeURIComponent(queryName)}`);
-    if (res.ok) {
-      const data = await res.json();
-      if (data && data.url) {
-        coverCache.set(key, data.url);
-        return data.url;
+  const request = (async () => {
+    try {
+      await waitForCoverSlot();
+      const res = await fetch(`/api/cover?name=${encodeURIComponent(queryName)}`);
+      if (res.ok) {
+        const data = await res.json();
+        if (data && data.url) {
+          coverCache.set(key, data.url);
+          return data.url;
+        }
       }
+    } catch (err) {
+      // Network or server offline - fallback to null
     }
-  } catch (err) {
-    // Network or server offline - fallback to null
-  }
 
-  return null;
+    return null;
+  })();
+  pendingCovers.set(key, request);
+  try {
+    return await request;
+  } finally {
+    pendingCovers.delete(key);
+  }
 }

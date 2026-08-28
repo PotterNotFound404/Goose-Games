@@ -31,7 +31,7 @@ exports.handler = async (event) => {
       parts: [{ text: item.text }]
     }));
     contents.push({ role: 'user', parts: [{ text: message }] });
-    const model = process.env.GEMINI_MODEL || 'gemini-2.5-flash-lite';
+    const model = process.env.GEMINI_MODEL || 'gemini-3.6-flash';
     const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${encodeURIComponent(apiKey)}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -42,6 +42,7 @@ exports.handler = async (event) => {
     });
     const data = await response.json().catch(() => null);
     const reply = data?.candidates?.[0]?.content?.parts?.[0]?.text;
+    if (!response.ok) console.error('Gemini API error:', response.status, data?.error?.message || 'unknown error');
     return { statusCode: 200, body: JSON.stringify({ reply: reply || localReply(message, payload.lang), source: reply ? 'gemini' : 'local' }) };
   } catch (error) {
     console.error('Chat function failed:', error.message);

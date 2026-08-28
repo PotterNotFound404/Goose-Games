@@ -18,6 +18,26 @@ function requestJson(url, options = {}) {
   }));
 }
 
+function cachePath(name) {
+  const safe = name.replace(/[^a-z0-9]+/gi, '_').toLowerCase();
+  return path.join(CACHE_DIR, `${safe}.json`);
+}
+
+function readCachedCover(name) {
+  try {
+    const payload = JSON.parse(fs.readFileSync(cachePath(name), 'utf8'));
+    return typeof payload.url === 'string' ? payload.url : null;
+  } catch (_) {
+    return undefined;
+  }
+}
+
+function saveCachedCover(name, url) {
+  try {
+    fs.writeFileSync(cachePath(name), JSON.stringify({ name, url }), 'utf8');
+  } catch (_) {}
+}
+
 async function getToken() {
   if (!CLIENT_ID || !CLIENT_SECRET) throw new Error('Missing IGDB environment variables');
   if (tokenCache.token && Date.now() < tokenCache.expiresAt - 60000) return tokenCache.token;
@@ -45,20 +65,35 @@ exports.handler = async (event) => {
     };
   }
 
+  const cachedUrl = readCachedCover(name);
+  if (typeof cachedUrl !== 'undefined') {
+    return {
+      statusCode: 200,
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, url: cachedUrl }),
+    };
+  }
+
   try {
     const token = await getToken();
     const query = `search "${name.replace(/"/g, '\\"')}"; fields name,cover.image_id; limit 1;`;
-    const response = await requestJson('https://api.igdb.com/v4/games', {
-      method: 'POST',
-      headers: {
-        'Client-ID': CLIENT_ID,
-        Authorization: `Bearer ${token}`,
-        'Content-Type': 'text/plain',
-      },
-      body: query,
-    });
+    let response;
+    for (let attempt = 0; attempt < 3; attempt += 1) {
+      response = await requestJson('https://api.igdb.com/v4/games', {
+        method: 'POST',
+        headers: {
+          'Client-ID': CLIENT_ID,
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'text/plain',
+        },
+        body: query,
+      });
+      if (response.status !== 429) break;
+      await new Promise(resolve => setTimeout(resolve, 350 * (attempt + 1)));
+    }
     const imageId = response.body?.[0]?.cover?.image_id;
     const url = imageId ? `https://images.igdb.com/igdb/image/upload/t_cover_big/${imageId}.jpg` : null;
+    saveCachedCover(name, url);
     return {
       statusCode: 200,
       headers: { 'Content-Type': 'application/json' },
