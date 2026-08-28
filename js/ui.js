@@ -41,7 +41,7 @@ export function initCartUI(onCheckout){
     fixed.className = 'cart-fixed';
     fixed.innerHTML = '🛒<span class="cart-count" id="cartCountFixed">0</span>';
     document.body.appendChild(fixed);
-    fixed.addEventListener('click', openDrawer);
+    fixed.addEventListener('click', toggleDrawer);
     renderCart();
   }
   if(elements.closeDrawer) elements.closeDrawer.addEventListener('click', closeDrawerFn);
@@ -86,6 +86,11 @@ export function openDrawer(){
     // remove anim element after drawer is visible
     setTimeout(()=>{ anim.remove(); }, 400);
   }, 420);
+}
+
+function toggleDrawer(){
+  if(elements.cartDrawer?.classList.contains('show')) closeDrawerFn();
+  else openDrawer();
 }
 
 export function closeDrawerFn(){
