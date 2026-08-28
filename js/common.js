@@ -57,24 +57,16 @@ function setupTheme(){
 }
 
 function ensureFavicon(){
-  if(document.querySelector('link[rel="icon"]')) return;
+  const existing = document.querySelector('link[rel="icon"]');
+  if(existing){
+    existing.href = 'favicon.svg';
+    existing.type = 'image/svg+xml';
+    return;
+  }
   const link = document.createElement('link');
   link.rel = 'icon';
   link.type = 'image/svg+xml';
-  link.href = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(`
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-      <defs>
-        <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stop-color="#FFC93C"/>
-          <stop offset="100%" stop-color="#FF6B35"/>
-        </linearGradient>
-      </defs>
-      <rect width="64" height="64" rx="16" fill="#0F1216"/>
-      <path d="M39 10c-6 5-10 11-13 18l-6 15 9-5 3 11 8-27-6 3 9-15z" fill="url(#g)"/>
-      <path d="M28 56c9 1 17-4 20-13 1-4 0-7-2-10-2 8-6 13-12 15-3 1-5 3-6 8z" fill="#FF6B35" opacity=".95"/>
-      <circle cx="36" cy="26" r="2.1" fill="#1B2430"/>
-    </svg>
-  `);
+  link.href = 'favicon.svg';
   document.head.appendChild(link);
 }
 

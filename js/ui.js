@@ -133,6 +133,9 @@ export function buildCard(game, addToCartHandler){
 
   const img = card.querySelector('img');
   card._coverPromise = attachCover(img, game.name, game.emoji);
+  card._coverPromise.then(result => {
+    if(result?.failed) card.remove();
+  });
   const qtyDisplay = card.querySelector('.qty-display');
   const qtyButtons = card.querySelectorAll('.qty-btn');
   let qty = 1;
@@ -174,13 +177,14 @@ export function attachCover(imgEl, name, emojiFallback='🎮', options = {}){
   const { allowEmoji = true, timeoutMs = COVER_TIMEOUT_MS } = options;
 
   const applyEmoji = () => {
-    if(!allowEmoji) return { hasCover: false };
+    if(!allowEmoji) return { hasCover: false, failed: true };
     imgEl.src = emojiDataUrl(emojiFallback);
     imgEl.classList.add('loaded');
-    return { hasCover: true, fallback: true };
+    return { hasCover: false, fallback: true, failed: true };
   };
 
-  const work = import('./covers.js').then(mod => {
+  const work = () => import('./covers.js').then(mod => {
+    imgEl.dataset.coverStarted = 'true';
     return mod.getCover(name).then(url => {
       if(!url) return applyEmoji();
 
@@ -209,18 +213,49 @@ export function attachCover(imgEl, name, emojiFallback='🎮', options = {}){
     });
   }).catch(() => applyEmoji());
 
-  return work;
+  return new Promise(resolve => {
+    let started = false;
+    let timer;
+    let observer;
+    const start = () => {
+      if(started) return;
+      started = true;
+      observer?.disconnect();
+      timer = setTimeout(() => resolve(applyEmoji()), timeoutMs);
+      work().then(result => {
+        clearTimeout(timer);
+        resolve(result);
+      });
+    };
+    if(typeof IntersectionObserver === 'undefined') start();
+    else {
+      observer = new IntersectionObserver(entries => {
+        if(entries.some(entry => entry.isIntersecting)) setTimeout(start, 1000);
+      }, { rootMargin: '600px 0px' });
+      observer.observe(imgEl);
+    }
+    const onVisibilityChange = () => {
+      if(document.hidden) return;
+      document.removeEventListener('visibilitychange', onVisibilityChange);
+      setTimeout(start, 1000);
+    };
+    document.addEventListener('visibilitychange', onVisibilityChange);
+  });
 }
 
 export async function settleCoversAndPrune(cards){
-  return Promise.all(
+  const settled = Promise.all(
     cards.map(card => card._coverPromise || Promise.resolve({ hasCover: true, fallback: true }))
   );
+  return Promise.race([
+    settled,
+    new Promise(resolve => setTimeout(() => resolve([]), 1500))
+  ]);
 }
 
 export function pruneElementOnCoverFail(el, promise){
-  promise.then(() => {
-    // Keep the storefront visible even when a cover cannot be fetched.
+  promise.then(result => {
+    if(result?.failed) el.remove();
   });
 }
 
