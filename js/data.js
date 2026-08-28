@@ -8,7 +8,7 @@ export const CATEGORY_TITLES = {
   Adventure: [
     "The Legend of Zelda: Breath of the Wild","Horizon Zero Dawn","Genshin Impact","Uncharted 4: A Thief's End",
     "Assassin's Creed Valhalla","Red Dead Redemption 2","The Witcher 3: Wild Hunt","Life is Strange","Firewatch",
-    "Lara Croft and the Guardian of Light","The Outer Worlds","Death Stranding","The Last of Us",
+    "The Outer Worlds","Death Stranding","The Last of Us",
     "The Walking Dead: Season One","Kingdom Hearts III","Ori and the Will of the Wisps","A Plague Tale: Innocence","Horizon Forbidden West"
   ],
   RPG: [
